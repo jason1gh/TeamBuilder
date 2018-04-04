@@ -31,10 +31,10 @@ public class TeamBuilder {
      * @return results array of int.
      */
     public int[] specialLoations(String[] paths) {
-        int[] results={-1, -1};
+        int[] results = { -1, -1 };
 
         /* Sanity check the input parameter */
-        if (paths == null || paths.length<1) {
+        if (paths == null || paths.length < 1) {
             System.out.println("Invalid paths.");
             return results;
         }
@@ -47,7 +47,7 @@ public class TeamBuilder {
          *  Also make sure the input parameter is NxN
          */
         visited = new boolean[positions];
-        for (int i=0; i<positions; i++) {
+        for (int i = 0; i < positions; i++) {
             pathArray[i] = paths[i].toCharArray();
             if (pathArray[i].length != positions) {
                 System.out.print("Invalid paths.");
@@ -84,9 +84,9 @@ public class TeamBuilder {
          *
          */
         results[0] = 0;
-        for (char[] pa: pathArray) {
+        for (char[] pa : pathArray) {
             boolean canAccessAll = true;
-            for (char pac: pa) {
+            for (char pac : pa) {
                 if (pac == '0') {
                     canAccessAll = false;
                     break;
@@ -97,9 +97,9 @@ public class TeamBuilder {
         }
 
         results[1] = 0;
-        for (int i=0; i<positions; i++) {
+        for (int i = 0; i < positions; i++) {
             boolean canBeAccessedByAll = true;
-            for (int j=0; j<positions; j++) {
+            for (int j = 0; j < positions; j++) {
                 if (pathArray[j][i] == '0') {
                     canBeAccessedByAll = false;
                     break;
@@ -126,7 +126,7 @@ public class TeamBuilder {
      */
     private void dfs(int row) {
         visited[row] = true;
-        for (int i=0; i<positions; i++) {
+        for (int i = 0; i < positions; i++) {
             if (row == i)
                 continue;
             if (pathArray[row][i] == '1') {
@@ -147,7 +147,7 @@ public class TeamBuilder {
      * @param to   destination row.
      */
     private void copyRow(int from, int to) {
-        for (int i=0; i<positions; i++) {
+        for (int i = 0; i < positions; i++) {
             if (pathArray[from][i] == '1')
                 pathArray[to][i] = '1';
         }
@@ -159,7 +159,7 @@ public class TeamBuilder {
      * @param to   destination column.
      */
     private void copyCol(int from, int to) {
-        for (int i=0; i<positions; i++) {
+        for (int i = 0; i < positions; i++) {
             if (pathArray[i][from] == '1')
                 pathArray[i][to] = '1';
         }
@@ -169,7 +169,7 @@ public class TeamBuilder {
      * For debug only. Print out the intermedia steps.
      */
     private void printArray() {
-        for (char[] par: pathArray) {
+        for (char[] par : pathArray) {
             for (char parc : par) {
                 System.out.print(String.valueOf(parc) + " ");
             }
